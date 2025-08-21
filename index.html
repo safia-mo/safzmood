@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify iPod App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="ipod-frame">
+    <img src="./assests/ipod.png" alt="iPod" class="ipod-image">
+
+    <div class="ipod-screen">
+
+        <div class="mood-buttons">
+            <button class="mood-btn" data-playlist="1IdvX1XsmOAhlVY662g7Xg">Happy</button>
+            <button class="mood-btn" data-playlist="6wF7zxXyl0yT3Bx8x0qllD">Chill</button>
+            <button class="mood-btn" data-playlist="5FlEHQm1H1lucFAokvYM4h">Energetic</button>
+            <button class="mood-btn" data-playlist="76wGUQLUBC3IYpnplb5cDD">Angry</button>
+        </div>
+
+        <div class="current-playlist" style="display:none;">
+            <h2 id="playlist-name"></h2>
+            <ul id="track-list"></ul>
+        </div>
+
+        <div class="spotify-now-playing" style="display:none;">
+            <img class="album-cover" src="cover.jpg" alt="Album Cover">
+            <div class="track-info">
+                <p class="track-name">Song Name</p>
+                <p class="artist-name">Artist Name</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="ipod-buttons">
+        <button class="menu-button">MENU</button>
+        <button class="up-button">▲</button>
+        <button class="down-button">▼</button>
+        <button class="center-button">●</button>
+        <button class="prev-button">⏮</button>
+        <button class="play-button">▶/❚❚</button>
+        <button class="next-button">⏭</button>
+        <button class="fast-forward-button" style="display:none;">⏩</button>
+    </div>
+</div>
+
+<script src="app.js"></script>
+<script src="index.js"></script>
+</body>
+</html>
