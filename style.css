@@ -1,0 +1,62 @@
+ .ipod-container {
+    position: relative;
+    width: 750px;
+    height: 750px;
+    background: transparent;
+}
+
+.ipod-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 337px;
+    height: 562px;
+}
+
+.screen {
+    position: absolute;
+    top: 129px;       
+    left: 376px;      
+    width: 275px;
+    height: 205px;
+    background: rgba(0,0,0,0); 
+}
+
+.center-button {
+    position: absolute;
+    top: 490px;
+    left: 376px;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: #ccc;
+    transform: translate(-50%, -50%);
+}
+
+.prev-button {
+    position: absolute;
+    top: 490px;
+    left: 296px;
+    width: 50px;
+    height: 20px;
+    background: #ccc;
+}
+
+.next-button {
+    position: absolute;
+    top: 490px;
+    left: 455px;
+    width: 50px;
+    height: 20px;
+    background: #ccc;
+}
+
+.play-button {
+    position: absolute;
+    top: 577px;
+    left: 376px;
+    width: 50px;
+    height: 20px;
+    background: #ccc;
+    transform: translateX(-50%);
+}

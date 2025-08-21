@@ -13,7 +13,7 @@ const artistName = document.querySelector('.artist-name');
 let currentPlaylist = [];
 let currentIndex = 0;
 let isPlaying = false;
-
+ 
 init();
 
 async function init() {
