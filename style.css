@@ -1,4 +1,4 @@
- .ipod-container {
+ .ipod-frame {
     position: relative;
     width: 750px;
     height: 750px;
@@ -9,11 +9,9 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 337px;
-    height: 562px;
 }
 
-.screen {
+.ipod-screen {
     position: absolute;
     top: 129px;       
     left: 376px;      
