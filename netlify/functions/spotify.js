@@ -1,6 +1,6 @@
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
-exports.handler = async (event, context) => {
+export async function handler(event, context) {
   const clientId = process.env.SPOTIFY_CLIENT_ID;
   const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
 
@@ -49,4 +49,4 @@ exports.handler = async (event, context) => {
   } catch (error) {
     return { statusCode: 500, body: error.toString() };
   }
-};
+}
