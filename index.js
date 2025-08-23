@@ -9,22 +9,25 @@ const nextButton = document.querySelector('.next-button');
 const albumCover = document.querySelector('.album-cover');
 const trackName = document.querySelector('.track-name');
 const artistName = document.querySelector('.artist-name');
+const menuButton = document.querySelector('.menu-button');
+const centerButton = document.querySelector('.center-button');
 
 let currentPlaylist = [];
 let currentIndex = 0;
 let isPlaying = false;
  
-init();
-
-async function init() {
-    const playlist = await getPlaylist('YOUR_DEFAULT_PLAYLIST_ID');
-    displayPlaylist(playlist);
+function init() {
+    document.querySelector('.mood-buttons').style.display = 'block';
+    document.querySelector('.current-playlist').style.display = 'none';
+    document.querySelector('.spotify-now-playing').style.display = 'none';
 }
+
+init();
 
 moodButtons.forEach(btn => {
     btn.addEventListener('click', async () => {
         const playlistKey = btn.dataset.playlist;
-        const playlist = await getPlaylist(playlistKey);
+        const playlist = await getPlaylist(playlistId);
         displayPlaylist(playlist);
     });
 });
@@ -55,8 +58,14 @@ function displayPlaylist(playlist) {
 async function playCurrentTrack() {
     const track = currentPlaylist[currentIndex];
     if (!track) return;
-    await playTrack(track);
-    isPlaying = true;
+    try {
+        await playTrack(track);
+        isPlaying = true;
+    } catch (err) {
+        console.warn(err);
+        isPlaying = false;
+    }
+
     updateNowPlaying();
     updatePlayButton();
 }
@@ -78,10 +87,6 @@ function highlightCurrentTrack() {
         li.classList.toggle('playing', index === currentIndex);
     });
 }
-function updatePlayButton() {
-    const img = playButton.querySelector('img');
-    img.src = isPlaying ? 'pause-button.png' : 'play-button.png';
-}
 
 playButton.addEventListener('click', async () => {
     if (isPlaying) {
@@ -89,8 +94,8 @@ playButton.addEventListener('click', async () => {
         isPlaying = false;
     } else {
         await playCurrentTrack();
+        isPlaying = true;
     }
-    updatePlayButton();
 });
 
 prevButton.addEventListener('click', async () => {
@@ -100,5 +105,15 @@ prevButton.addEventListener('click', async () => {
 
 nextButton.addEventListener('click', async () => {
     currentIndex = currentIndex < currentPlaylist.length - 1 ? currentIndex + 1 : 0;
+    await playCurrentTrack();
+});
+
+menuButton.addEventListener('click', () => {
+    document.querySelector('.mood-buttons').style.display = 'block';
+    document.querySelector('.current-playlist').style.display = 'none';
+    document.querySelector('.spotify-now-playing').style.display = 'none';
+});
+
+centerButton.addEventListener('click', async () => {
     await playCurrentTrack();
 });
