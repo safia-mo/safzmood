@@ -27,7 +27,7 @@ init();
 moodButtons.forEach(btn => {
     btn.addEventListener('click', async () => {
         const playlistKey = btn.dataset.playlist;
-        const playlist = await getPlaylist(playlistId);
+        const playlist = await getPlaylist(playlistKey);
         displayPlaylist(playlist);
     });
 });
