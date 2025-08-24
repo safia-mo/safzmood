@@ -19,6 +19,8 @@
   },
   "homepage": "https://github.com/safia-mo/safzmood#readme",
   "dependencies": {
-    "node-fetch": "^2.7.0"
+    "dotenv": "^17.2.1",
+    "node-fetch": "^2.7.0",
+    "spotify-preview-finder": "^2.1.0"
   }
 }

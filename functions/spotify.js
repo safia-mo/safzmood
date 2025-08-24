@@ -1,3 +1,6 @@
+require('dotenv').config();
+const spotifyPreviewFinder = require('spotify-preview-finder');
+
 const fetch = require('node-fetch')
 
 exports.handler = async function handler(event, context) {
@@ -10,7 +13,6 @@ exports.handler = async function handler(event, context) {
       body: 'Spotify client ID/secret not set in environment variables'
     };
   }
-
 
   try {
     const tokenRes = await fetch('https://accounts.spotify.com/api/token', {
@@ -35,12 +37,28 @@ exports.handler = async function handler(event, context) {
     });
     const playlistData = await playlistRes.json();
 
-    const tracks = playlistData.tracks.items.map(item => ({
-      name: item.track.name,
-      artist: item.track.artists.map(a => a.name).join(', '),
-      cover: item.track.album.images[0]?.url,
-      previewUrl: item.track.preview_url
-    }));
+   const tracks = await Promise.all(
+    playlistData.tracks.items.map(async item => {
+    const trackName = item.track.name;
+    const artistName = item.track.artists.map(a => a.name).join(', ');
+    const cover = item.track.album.images[0]?.url;
+    let previewUrl = item.track.preview_url;
+
+    if (!previewUrl) {
+      try {
+        const result = await spotifyPreviewFinder(trackName, artistName, 1);
+        if (result.success && result.results.length > 0) {
+          previewUrl = result.results[0].previewUrls[0] || null;
+        }
+      } catch (err) {
+        console.warn(`No preview found for ${trackName}`);
+      }
+    }
+
+    return { name: trackName, artist: artistName, cover, previewUrl };
+  })
+);
+
 
     return {
       statusCode: 200,
