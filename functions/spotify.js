@@ -1,8 +1,8 @@
 const fetch = require('node-fetch')
 
 exports.handler = async function handler(event, context) {
-  const clientId = process.env.SPOTIFY_CLIENT_ID;
-  const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
+  const clientId = process.env.clientId;
+  const clientSecret = process.env.clientSecret;
 
   if (!clientId || !clientSecret) {
     return {
