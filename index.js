@@ -52,7 +52,7 @@ function displayPlaylist(playlist) {
     });
 
     updateNowPlaying();
-    updatePlayButton();
+    
 }
 
 async function playCurrentTrack() {
@@ -67,7 +67,6 @@ async function playCurrentTrack() {
     }
 
     updateNowPlaying();
-    updatePlayButton();
 }
 
 function updateNowPlaying() {
