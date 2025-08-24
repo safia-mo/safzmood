@@ -11,6 +11,7 @@ exports.handler = async function handler(event, context) {
     };
   }
 
+
   try {
     const tokenRes = await fetch('https://accounts.spotify.com/api/token', {
       method: 'POST',
